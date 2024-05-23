@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day4</title>
+  </head>
+  <body>
+    <h1>EDIT PAGE</h1>
+    <form action"#" method="POST">
+        {%csrf_token%}
+        <p>Course id: {{form.course_id}}</p>
+        <p>Course name: {{form.course_name}}</p>
+        <p>Course type: {{form.course_type}}</p>
+        <p>Credit: {{form.credit}}</p>
+        <p>Tutorial Marks: {{form.tutorial_full_marks}}</p>
+        <p>Attendance: {{form.att_full_marks}}</p>
+        <p>Final Marks: {{form.final_full_marks}}</p>
+        <input type="submit" value="UPDATE" />
+    </form>
+  </body>
+</html>

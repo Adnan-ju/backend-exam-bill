@@ -1,0 +1,500 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rate List</title>
+ 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+   
+    body {
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    td:last-child {
+      text-align: center;
+    }
+    a {
+      text-decoration: none;
+      margin-right: 5px;
+    }
+    .btn {
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+    .btn-edit {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .btn-edit:hover {
+      background-color: #91bbe8;
+      color: #fff;
+    }
+    .btn-delete {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    .btn-delete:hover {
+      background-color: #e67782;
+      color: #fff;
+    }
+    .btn-add {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .btn-add:hover {
+      background-color:rgb(43, 125, 43);
+      color: #fff;
+     
+    }
+  </style>
+</head>
+<body>
+  <div class=" d-block p-2 bg-dark card p-4 mb-5"> 
+  <h1 class="text-white text-center">RATE LISTS</h1>
+    </div> 
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>TYPE OF WORK</th>
+        <th>Criteria</th>
+        <th>Rates</th>
+        
+        <th>ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in rates %}
+      <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.category}}</td>
+        <td>{{i.value}}</td>
+        
+        <td>
+          <a href="{% url 'edit_rate' i.id %}" class="btn btn-edit">EDIT</a>
+          <a href="{% url 'delete_rate' i.id %}" class="btn btn-delete">DELETE</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'add_rate' %}" class="btn btn-add">ADD NEW TYPE</a>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rate List</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">  
+  <style>
+    /* Custom CSS styles */
+    body {
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    td:last-child {
+      text-align: center;
+    }
+    a {
+      text-decoration: none;
+      margin-right: 5px;
+    }
+    .btn {
+      padding: 6px 12px;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+    .btn-edit {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .btn-edit:hover {
+      background-color: #91bbe8;
+      color: #fff;
+    }
+    .btn-delete {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    .btn-delete:hover {
+      background-color: #e67782;
+      color: #fff;
+    }
+    .btn-add {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .btn-add:hover {
+      background-color:rgb(43, 125, 43);
+      color: #fff;
+    }
+    
+    .navbar {
+            background-color: #000000; /* Dark background for navbar */
+            width: 100%; /* Full width */
+            padding:0 0 0 20%;
+            
+            
+            
+        }
+    
+
+        .navbar-nav .nav-item {
+            
+            margin: 0 50px 0 0; /* Space between menu items */
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            font-size: 1.2rem; /* Reduced font size */
+            font-weight:500;
+            line-height: 2.6;
+            letter-spacing: 2px;
+
+        }
+        
+    
+        .navbar-nav .nav-item:hover {
+            /* background-color: #007bff; */
+            background-color: #828b95; 
+            
+        }
+
+        .navbar-nav .nav-item:hover .nav-link {
+            
+            color: #fff; /* Ensure text stays white on hover */
+        }
+        .dropdown-menu{
+            margin:0;
+            background-color: #343a40;
+        }
+
+        .dropdown-menu a {
+            line-height: 2.6;
+            font-size: 1.2rem; /* Slightly smaller font size for dropdown items */
+            color:cadetblue;
+           
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #828b95;  /* Background color for dropdown items on hover */
+            color: #fff; /* White text for dropdown items on hover */
+        }
+
+        .navbar-nav .dropdown:hover .dropdown-menu {
+            display: block; /* Show dropdown on hover */
+        }
+        .dropdown-toggle::after {
+            display: none; /* Remove the dropdown arrow */
+        }
+
+        footer {
+            background-color: #000; /* Black background for footer */
+            color: #fff; /* White text for footer */
+            padding: 20px 0; /* Padding for footer */
+           
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           
+        }
+        
+
+        .footer-left {
+            padding-left: 20px;
+            display: flex;
+            align-items: center;
+            
+        }
+
+        .footer-right{
+            padding-left: 200px;
+            display: flex;
+            align-items: center;  
+        }
+
+        .footer-left img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+            
+        }
+
+        .footer-left p, .footer-right p {
+            margin: 0;
+            line-height: 1.6;
+            color:white;
+        }
+
+      
+
+        .footer-right .contact-item {
+            margin-bottom: 10px;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-text {
+            flex: 1;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-contact p {
+            margin: 0;
+        }
+
+        .footer-contact i {
+            margin-right: 5px;
+        }
+        
+        .header-title img {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+
+        .custom-card {
+            display: flex;
+            align-items: center;
+        }
+        .custom-card img {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+    
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top mb-4">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main' %}">Home</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="ratesDropdown" role="button">
+                    Rates
+                </a>
+                <div class="dropdown-menu" aria-labelledby="ratesDropdown">
+                    <a class="dropdown-item" href="{% url 'rate_list' %}">Rate List</a>
+                    <a class="dropdown-item" href="{% url 'add_rate' %}">Add New Rate</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="examCommitteeDropdown" role="button">
+                    Exam Committee
+                </a>
+                <div class="dropdown-menu" aria-labelledby="examCommitteeDropdown">
+                    <a class="dropdown-item" href="{% url 'committee_list' %}">Exam Committee List</a>
+                    <a class="dropdown-item" href="{% url 'add_committee' %}">Add New Exam Committee</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="facultyMembersDropdown" role="button">
+                    Faculty Members
+                </a>
+                <div class="dropdown-menu" aria-labelledby="facultyMembersDropdown">
+                    <a class="dropdown-item" href="{% url 'faculty_members' %}">Faculty List</a>
+                    <a class="dropdown-item" href="{% url 'add_faculty' %}">Add Faculty Member</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'display_data' %}">Exam Bill List</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+<div class="d-block p-2 bg-dark card p-4 mb-5 mt-5 custom-card text-center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Official_seal_of_Jahangirnagar_University.png" alt="Example Image"> <!-- Replace with your image source -->
+  <div>
+      <h1 class="text-white text-center">পরীক্ষা কাজের পারিতোষিক হার</h1>
+      <h5 class="text-white text-center">(১৪-০২-২০২০ তারিখে অনুষ্ঠিত সিন্ডিকেটের সভায় অনুমোদিত)</h5>
+      <h6 class="text-white text-center">জাহাঙ্গীরনগর বিশ্ববিদ্যালয়</h6>
+  </div>
+</div>
+
+
+
+
+
+
+
+  <!-- Use regroup to group rates by name -->
+  {% regroup rates by name as grouped_rates %}
+  {% for group in grouped_rates %}
+  {% if group.grouper == "Making Question Paper" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">প্রশ্নপত্র প্রণয়ন</h4>
+  {% elif group.grouper == "Evaluating Answer Scripts" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">উত্তরপত্র মূল্যায়ন</h4>
+  {% elif group.grouper == "Lab Exam" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">ব্যবহারিক পরীক্ষা</h4>
+  {% elif group.grouper == "Viva Exam" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">মৌখিক পরীক্ষা</h4>
+  {% elif group.grouper == "Question Moderation" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">প্রশ্নপত্র মডারেশন</h4>
+  {% elif group.grouper == "Stencil" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">স্টেনসিল কাটা</h4>
+  {% elif group.grouper == "Translation" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">অনুবাদ</h4>
+  {% elif group.grouper == "Thesis/Project/Report Evaluation" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white" >থিসিস/প্রজেক্ট/রিপোর্ট মূল্যায়ন</h4>
+  {% elif group.grouper == "Exercise" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">অনুশীলনী</h4>
+  {% elif group.grouper == "Tabulation" %}
+
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">টেবুলেশন</h4>
+  {% elif group.grouper == "Exam Committee Chief_s Remuneration" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">কমিটির সভাপতির পারিতোষিক</h4>
+    {% elif group.grouper == "Practice" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">অনুশীলনী</h4>
+    {% elif group.grouper == "Remuneration of Supervisor(M.Phil/PhD)" %}
+    <h4 class="text-center p-2 d-block bg-secondary card text-white">তত্ত্বাবধায়ক সম্মানী(এম. ফিল/ পিএইচ.ডি)</h4>
+  {% endif %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th class="text-center">কাজের ধরণ</th>
+          <th class="text-center">কত ঘণ্টার পরীক্ষা/কাজের বিবরণ</th>
+          <th class="text-center">টাকার পরিমাণ(৳)</th>
+          <th class="text-center">ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rate in group.list %}
+          <tr>
+            <td class="text-center">
+              {% if rate.name == "Making Question Paper" %}
+                প্রশ্নপত্র প্রণয়ন
+              {% elif rate.name == "Evaluating Answer Scripts" %}
+                উত্তরপত্র মূল্যায়ন
+              {% elif rate.name == "Lab Exam" %}
+                ব্যবহারিক পরীক্ষা
+              {% elif rate.name == "Viva Exam" %}
+                মৌখিক পরীক্ষা
+              {% elif rate.name == "Question Moderation" %}
+                প্রশ্নপত্র মডারেশন
+              {% elif rate.name == "Stencil" %}
+                স্টেনসিল কাটা
+                {% elif rate.name == "Practice" %}
+                অনুশীলনী
+              {% elif rate.name == "Translation" %}
+                অনুবাদ
+              {% elif rate.name == "Thesis/Project/Report Evaluation" %}
+                থিসিস/প্রজেক্ট/রিপোর্ট মূল্যায়ন
+              {% elif rate.name == "Exercise" %}
+                অনুশীলনী
+              {% elif rate.name == "Tabulation" %}
+                টেবুলেশন
+              {% elif rate.name == "Exam Committee Chief's Remuneration" %}
+                কমিটির সভাপতির পারিতোষিক
+              {% elif rate.name == "Remuneration of Supervisor(M.Phil/PhD)" %}
+                তত্ত্বাবধায়ক সম্মানী(এম. ফিল/ পিএইচ.ডি)
+              {% endif %}
+            </td>
+            <td class="text-center">{{ rate.category }}</td>
+            <td class="text-center">৳ {{ rate.value }}</td>
+            <td class="text-center">
+              <a href="{% url 'edit_rate' rate.id %}" class="btn btn-edit">EDIT</a>
+              <a href="{% url 'delete_rate' rate.id %}" class="btn btn-delete">DELETE</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endfor %}
+
+  <a href="{% url 'add_rate' %}" class="btn btn-add">ADD NEW TYPE</a>
+
+  <!-- Bootstrap JS (Optional) -->
+
+
+  <footer>
+    <div class="container">
+        <div class="row footer-content">
+            <div class="col-md-6 footer-left">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Official_seal_of_Jahangirnagar_University.png" alt="Logo">
+                <div class="footer-text">
+                    <p>Department of Computer Science and Engineering</p>
+                    <p>Jahangirnagar University</p>
+                    <p>Savar, Dhaka-1312</p>
+                </div>
+            </div>
+            <div class="col-md-6 footer-right">
+                <div class="footer-contact">
+                    <p><i class="fas fa-globe"></i> <a href="https://juniv.edu/department/cse" target="_blank">juniv.edu/department/cse</a></p>
+                    <p><i class="fas fa-phone"></i>8932444222</p>
+                    <p><i class="fas fa-envelope"></i>cseju@juniv.edu</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

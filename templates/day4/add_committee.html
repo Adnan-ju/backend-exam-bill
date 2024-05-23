@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADD NEW EXAM COMMITTEE</title>
+  </head>
+  <body>
+    <h1>ADD NEW EXAM COMMITTEE</h1>
+    <form action="{% url 'add_committee' %}" method="POST">
+        {%csrf_token%}
+        {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+            {% endif %}
+        <p>Enter Year: {{form.year}}</p>
+        <p>Enter Session: {{form.session}}</p>
+        <p>Exam Committee Chief: {{form.committee_chief}}</p>
+        <p>Member 1: {{form.member_1}}</p>
+        <p>Member 2: {{form.member_2}}</p>
+        <input type="submit" value="SAVE" />
+    </form>
+  </body>
+</html>

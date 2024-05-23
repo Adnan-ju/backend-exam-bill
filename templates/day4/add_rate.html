@@ -1,0 +1,318 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEW CRTITERIA</title>
+  </head>
+  <body>
+    <h1>ADD NEW TYPE</h1>
+    <form action="{% url 'add_rate' %}" method="POST">
+        {%csrf_token%}
+        {% if error_message %}
+            <p style="color: red;">{{ error_message }}</p>
+            {% endif %}
+        <p>Enter Type: {{form.name}}</p>
+        <p>Enter Criteria: {{form.category}}</p>
+        <p>Enter Rates: {{form.value}}</p>
+        <input type="submit" value="SAVE" />
+    </form>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">        
+  <title>NEW CRITERIA</title>
+  <style>
+    .form-div {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #857d7d;
+    }
+
+    form {
+      background: linear-gradient(to bottom, #007bff 15%, #fff 15%);
+      padding: 80px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      
+    }
+
+    p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    
+    input{
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    input[type="text"],
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .error-message {
+      color: red;
+      margin-bottom: 15px;
+    }
+    
+
+    .navbar {
+            background-color: #000000; /* Dark background for navbar */
+            width: 100%; /* Full width */
+            padding:0 0 0 20%;
+            
+            
+            
+        }
+    
+
+        .navbar-nav .nav-item {
+            
+            margin: 0 50px 0 0; /* Space between menu items */
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            font-size: 1.2rem; /* Reduced font size */
+            font-weight:500;
+            line-height: 2.6;
+            letter-spacing: 2px;
+
+        }
+        
+    
+        .navbar-nav .nav-item:hover {
+            /* background-color: #007bff; */
+            background-color: #828b95; 
+            
+        }
+
+        .navbar-nav .nav-item:hover .nav-link {
+            
+            color: #fff; /* Ensure text stays white on hover */
+        }
+        .dropdown-menu{
+            margin:0;
+            background-color: #343a40;
+        }
+
+        .dropdown-menu a {
+            line-height: 2.6;
+            font-size: 1.2rem; /* Slightly smaller font size for dropdown items */
+            color:cadetblue;
+           
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #828b95;  /* Background color for dropdown items on hover */
+            color: #fff; /* White text for dropdown items on hover */
+        }
+
+        .navbar-nav .dropdown:hover .dropdown-menu {
+            display: block; /* Show dropdown on hover */
+        }
+        .dropdown-toggle::after {
+            display: none; /* Remove the dropdown arrow */
+        }
+
+        footer {
+            background-color: #000; /* Black background for footer */
+            color: #fff; /* White text for footer */
+            padding: 20px 0; /* Padding for footer */
+           
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           
+        }
+        
+
+        .footer-left {
+            padding-left: 20px;
+            display: flex;
+            align-items: center;
+            
+        }
+
+        .footer-right{
+            padding-left: 200px;
+            display: flex;
+            align-items: center;  
+        }
+
+        .footer-left img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+            
+        }
+
+        .footer-left p, .footer-right p {
+            margin: 0;
+            line-height: 1.6;
+            color:white;
+        }
+
+      
+
+        .footer-right .contact-item {
+            margin-bottom: 10px;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-text {
+            flex: 1;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-contact p {
+            margin: 0;
+        }
+
+        .footer-contact i {
+            margin-right: 5px;
+        }
+
+
+
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main' %}">Home</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="ratesDropdown" role="button">
+                    Rates
+                </a>
+                <div class="dropdown-menu" aria-labelledby="ratesDropdown">
+                    <a class="dropdown-item" href="{% url 'rate_list' %}">Rate List</a>
+                    <a class="dropdown-item" href="{% url 'add_rate' %}">Add New Rate</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="examCommitteeDropdown" role="button">
+                    Exam Committee
+                </a>
+                <div class="dropdown-menu" aria-labelledby="examCommitteeDropdown">
+                    <a class="dropdown-item" href="{% url 'committee_list' %}">Exam Committee List</a>
+                    <a class="dropdown-item" href="{% url 'add_committee' %}">Add New Exam Committee</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="facultyMembersDropdown" role="button">
+                    Faculty Members
+                </a>
+                <div class="dropdown-menu" aria-labelledby="facultyMembersDropdown">
+                    <a class="dropdown-item" href="{% url 'faculty_members' %}">Faculty List</a>
+                    <a class="dropdown-item" href="{% url 'add_faculty' %}">Add Faculty Member</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'display_data' %}">Exam Bill List</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+  <div class="form-div">
+  <form action="{% url 'add_rate' %}" method="POST">
+    <h1 class="mt-4">ADD NEW TYPE</h1>
+    {% csrf_token %}
+    {% if error_message %}
+      <p class="error-message">{{ error_message }}</p>
+    {% endif %}
+    <p>Enter Type: {{ form.name }}</p>
+    <p>Enter Criteria: {{ form.category }}</p>
+    <p>Enter Rates: {{ form.value }}</p>
+    <input type="submit" value="SAVE" />
+  </form>
+</div>
+
+
+  <footer>
+    <div class="container">
+        <div class="row footer-content">
+            <div class="col-md-6 footer-left">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Official_seal_of_Jahangirnagar_University.png" alt="Logo">
+                <div class="footer-text">
+                    <p>Department of Computer Science and Engineering</p>
+                    <p>Jahangirnagar University</p>
+                    <p>Savar, Dhaka-1312</p>
+                </div>
+            </div>
+            <div class="col-md-6 footer-right">
+                <div class="footer-contact">
+                    <p><i class="fas fa-globe"></i> <a href="https://juniv.edu/department/cse" target="_blank">juniv.edu/department/cse</a></p>
+                    <p><i class="fas fa-phone"></i>8932444222</p>
+                    <p><i class="fas fa-envelope"></i>cseju@juniv.edu</p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

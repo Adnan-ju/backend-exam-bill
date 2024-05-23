@@ -1,0 +1,148 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Courses</title>
+</head>
+<body>
+    <h1>Available Courses</h1>
+    <form method="POST" action="{% url 'register' student.Stu_id %}">
+        {% csrf_token %}
+        <label for="courses">Select Courses:</label><br>
+        <select id="courses" name="courses">
+            {% for course in remaining_courses %}
+                <option value="{{ course.id }}">{{ course.course_name }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Register Courses</button>
+    </form>
+</body>
+</html>  -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Courses</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .course-container {
+        border: 2px solid #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container"><div class="course-container p-5 m-5">
+            
+            <div class="card d-block bg-dark">
+                <h3  class="d-block bg-info fw-bold p-2 text-white">STUDENT INFO</h3>
+                <div class="p-4">
+                    <h6 class="mb-3"><strong class="text-info">ID:</strong> <span class="text-white fw-bold">{{ student.Stu_id }}</span></h6> 
+                    <h6 class="mb-3"><strong class="text-info">Name:</strong> <span class="text-white fw-bold">{{ student.name }}</span></h6> 
+                    <h6><strong class="text-info">Exam Roll:</strong> <span class="text-white fw-bold">{{ student.stu_exam_roll }}</span></h6> 
+                </div>
+            </div>
+
+       
+    <div class="card d-block bg-dark">
+        <h3 class="d-block bg-info fw-bold p-2 text-white">Available Courses</h3>
+        <form method="POST" action="{% url 'register' student.Stu_id %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="courses"><strong class="text-info p-3">Select Courses:</strong></label><br>
+                {% for course in remaining_courses %}
+                    <div class="custom-control custom-checkbox text-white m-3">
+                        <input type="checkbox" class="custom-control-input" id="course_{{ course.id }}" name="courses" value="{{ course.id }}">
+                        <label class="custom-control-label" for="course_{{ course.id }}">{{ course.course_name }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary m-4">Register Courses</button>
+            </div>
+            
+        </form>
+    </div>
+    </div>
+</body>
+</html>
+
+ <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Courses</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .course-container {
+        border: 2px solid #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 20px 10px rgba(0, 0, 0, 0.4);
+}
+        h1 {
+            margin-bottom: 20px;
+            color: #ebeff4;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .custom-control-label {
+            font-weight: 500;
+            color: white;
+            font-size:16px;
+        }
+        .custom-checkbox {
+            margin-top: 5px;
+        }
+       
+        .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+            border-color: #007bff;
+            background-color: #007bff;
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="course-container p-5 m-5">
+            
+            <div class="card d-block bg-dark">
+                <h3  class="d-block bg-info fw-bold p-2 text-white">STUDENT INFO</h3>
+                <div class="p-4">
+                    <h6 class="mb-3"><strong class="text-info">ID:</strong> <span class="text-white fw-bold">{{ student.Stu_id }}</span></h6> 
+                    <h6 class="mb-3"><strong class="text-info">Name:</strong> <span class="text-white fw-bold">{{ student.name }}</span></h6> 
+                    <h6><strong class="text-info">Exam Roll:</strong> <span class="text-white fw-bold">{{ student.stu_exam_roll }}</span></h6> 
+                </div>
+            </div>
+             
+
+            <div class="card bg-dark">
+            <div class="form-group d-block bg-dark">
+            <h3  class="d-block p-2 bg-info fw-bold text-white">Available Course List:</h3>
+            <form method="POST" action="{% url 'register' student.Stu_id %}">
+                {% csrf_token %}
+                
+                    {% for course in remaining_courses %}
+                        <div class="custom-control custom-checkbox m-4">
+                            <input type="checkbox" class="custom-control-input" id="course_{{ course.id }}" name="courses" value="{{ course.id }}">
+                            <label class="custom-control-label" for="course_{{ course.id }}">{{ course.course_name }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+            </form>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary m-4">Register Courses</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>  -->

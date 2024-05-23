@@ -1,0 +1,84 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add new Student</title>
+  </head>
+  <body>
+    <h1>ADD NEW Student</h1>
+    <form action="{% url 'save_stu' %}" method="POST">
+        {%csrf_token%}
+        <p>Student ID: {{form.Stu_id}}</p>
+        <p>Student Name: {{form.name}}</p>
+        <p>Exam Roll: {{form.stu_exam_roll}}</p>
+        <input type="submit" value="SAVE" />
+    </form>
+  </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add new Student</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .form-box {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-box .input-name{
+      font-size:20px;
+      color:silver;
+      font-weight:600;
+    }
+
+    .form-box .input-field1{
+      margin-right:80px;
+     
+    }
+    .form-box .input-field2{
+      margin-right:44px;
+    }
+    .form-box .input-field3{
+      margin-right:88px;
+    }
+   
+    .button{
+      width:350px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class=" mt-5 form-box">
+      <h1 class="mb-4 text-white text-center card d-block bg-secondary p-4">Registration</h1>
+      <form action="{% url 'save_stu' %}" method="POST">
+          {% csrf_token %}
+          <div class="form-group input-name">
+            <label for="Stu_id" class="form-label input-field1">Student ID:</label>
+            {{ form.Stu_id }}
+          </div>
+          <div class="form-group input-name">
+            <label for="name" class="form-label input-field2">Student Name:</label>
+            {{ form.name }}
+          </div>
+          <div class="form-group input-name">
+            <label for="stu_exam_roll" class="form-label input-field3">Exam Roll:</label>
+            {{ form.stu_exam_roll }}
+          </div>
+          <div class="text-center">
+          <button type="submit" class="btn btn-success button">SAVE</button>
+        </div>
+        </form>
+    </div>
+  </div>
+</body>
+</html>
+
+

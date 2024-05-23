@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Teachers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">        
+    <style>
+
+        .table-responsive{
+          padding: 0 80px 0 80px;
+        }
+        .table img {
+            max-width: 50px;
+            height: auto;
+        }
+      
+        .search-bar {
+            max-width: 500px;
+            margin: 0 550px;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 110px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .header-title img {
+            max-width: 100px;
+            margin-right: 20px;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header-text h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .header-text h3 {
+            font-size: 1.25rem;
+            color: #666;
+        }
+
+        .navbar {
+            background-color: #000000; /* Dark background for navbar */
+            width: 100%; /* Full width */
+            padding:0 0 0 20%;
+            
+            
+            
+        }
+    
+
+        .navbar-nav .nav-item {
+            
+            margin: 0 50px 0 0; /* Space between menu items */
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+            font-size: 1.2rem; /* Reduced font size */
+            font-weight:500;
+            line-height: 2.6;
+            letter-spacing: 2px;
+
+        }
+        
+    
+        .navbar-nav .nav-item:hover {
+            /* background-color: #007bff; */
+            background-color: #828b95; 
+            
+        }
+
+        .navbar-nav .nav-item:hover .nav-link {
+            
+            color: #fff; /* Ensure text stays white on hover */
+        }
+        .dropdown-menu{
+            margin:0;
+            background-color: #343a40;
+        }
+
+        .dropdown-menu a {
+            line-height: 2.6;
+            font-size: 1.2rem; /* Slightly smaller font size for dropdown items */
+            color:cadetblue;
+           
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #828b95;  /* Background color for dropdown items on hover */
+            color: #fff; /* White text for dropdown items on hover */
+        }
+
+        .navbar-nav .dropdown:hover .dropdown-menu {
+            display: block; /* Show dropdown on hover */
+        }
+        .dropdown-toggle::after {
+            display: none; /* Remove the dropdown arrow */
+        }
+
+
+        footer {
+            background-color: #000; /* Black background for footer */
+            color: #fff; /* White text for footer */
+            padding: 20px 0; /* Padding for footer */
+           
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           
+        }
+        
+
+        .footer-left {
+            padding-left: 20px;
+            display: flex;
+            align-items: center;
+            
+        }
+
+        .footer-right{
+            padding-left: 200px;
+            display: flex;
+            align-items: center;  
+        }
+
+        .footer-left img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+            
+        }
+
+        .footer-left p, .footer-right p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+      
+
+        .footer-right .contact-item {
+            margin-bottom: 10px;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-text {
+            flex: 1;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-contact p {
+            margin: 0;
+        }
+
+        .footer-contact i {
+            margin-right: 5px;
+        }    
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'main' %}">Home</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="ratesDropdown" role="button">
+                        Rates
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="ratesDropdown">
+                        <a class="dropdown-item" href="{% url 'rate_list' %}">Rate List</a>
+                        <a class="dropdown-item" href="{% url 'add_rate' %}">Add New Rate</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="examCommitteeDropdown" role="button">
+                        Exam Committee
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="examCommitteeDropdown">
+                        <a class="dropdown-item" href="{% url 'committee_list' %}">Exam Committee List</a>
+                        <a class="dropdown-item" href="{% url 'add_committee' %}">Add New Exam Committee</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="facultyMembersDropdown" role="button">
+                        Faculty Members
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="facultyMembersDropdown">
+                        <a class="dropdown-item" href="{% url 'faculty_members' %}">Faculty List</a>
+                        <a class="dropdown-item" href="{% url 'add_faculty' %}">Add Faculty Member</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'display_data' %}">Exam Bill List</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container header-title text-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Official_seal_of_Jahangirnagar_University.png" alt="Logo">
+        <div class="header-text">
+            <h1>Exam Bill List</h1>
+            <h2>Department of Computer Science and Engineering</h2>
+            <h3>Jahangirnagar University</h3>
+        </div>
+    </div>
+       
+
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- Search bar -->
+        <form id="searchForm" action="{% url 'teacher_profile' %}" method="get" class="input-group mb-4 search-bar">
+            <input type="text" id="searchInput" name="name" class="form-control" placeholder="Search for a teacher by name" required>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Photo</th>
+                        <th>Name</th>
+                        <th>Semester</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableBody">
+                    {% for item in data|slice:"1:" %}
+                    <tr>
+                        <td>
+                            {% if item.image %}
+                                <img src="{{ item.image }}" alt="{{ item.name }}">
+                            {% else %}
+                                No image available
+                            {% endif %}
+                        </td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.semester }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <footer>
+        <div class="container">
+            <div class="row footer-content">
+                <div class="col-md-6 footer-left">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Official_seal_of_Jahangirnagar_University.png" alt="Logo">
+                    <div class="footer-text">
+                        <p>Department of Computer Science and Engineering</p>
+                        <p>Jahangirnagar University</p>
+                        <p>Savar, Dhaka-1312</p>
+                    </div>
+                </div>
+                <div class="col-md-6 footer-right">
+                    <div class="footer-contact">
+                        <p><i class="fas fa-globe"></i> <a href="https://juniv.edu/department/cse" target="_blank">juniv.edu/department/cse</a></p>
+                        <p><i class="fas fa-phone"></i>  8932444222</p>
+                        <p><i class="fas fa-envelope"></i>  cseju@juniv.edu</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById("searchInput");
+            const dataTableBody = document.getElementById("dataTableBody");
+            const rows = dataTableBody.getElementsByTagName("tr");
+
+            searchInput.addEventListener("keyup", function() {
+                const filter = searchInput.value.toLowerCase();
+                for (let i = 0; i < rows.length; i++) {
+                    const nameCell = rows[i].getElementsByTagName("td")[1];
+                    if (nameCell) {
+                        const name = nameCell.textContent || nameCell.innerText;
+                        if (name.toLowerCase().includes(filter)) {
+                            rows[i].style.display = "";
+                        } else {
+                            rows[i].style.display = "none";
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
